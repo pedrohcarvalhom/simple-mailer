@@ -14,7 +14,11 @@ app.use(cors({
 app.use(express.json());
 
 app.listen(port, () => {
-  console.log(`nodemailerProject is listening at http://localhost:${port}`)
+  console.log(`Project running...`)
+
+  app.get('/', (req, res) => {
+    res.send('Hello World!')
+  })
   app.post('/require_budget', (req, res) => {
     try {
       const { email } = req.body
