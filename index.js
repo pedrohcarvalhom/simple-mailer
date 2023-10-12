@@ -17,6 +17,10 @@ app.listen(port, () => {
   console.log(`nodemailerProject is listening at http://localhost:${port}`)
   app.post('/require_budget', (req, res) => {
     try {
+      const { email } = req.body
+      if (!email || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+        throw new Error('Email is invalid')
+      }
       const emailService = new EmailService()
       emailService.sendEmailToBabi("babicarvalho.ink@gmail.com", req.body)
       
