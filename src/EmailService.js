@@ -16,7 +16,7 @@ export default class EmailService {
     const mailOptions = {
       from: 'babicarvalho.ink@gmail.com',
       to: destination,
-      subject: `Orçamento de tatuagem do ${userInfo.name}`,
+      subject: `Formulário de anamnese - ${userInfo.name}`,
       html: htmlBody,
       amp: `<!DOCTYPE html>
       ${htmlBody}
@@ -33,6 +33,7 @@ export default class EmailService {
   }
 
   mountEmailBody(userInfo) {
+    const { name, email, insta, tattooDate, cpf, amount, tattooer, deseases, piils, info, imageRights, covid } = userInfo
     return `
     <html>
     <head>
@@ -63,18 +64,19 @@ export default class EmailService {
     <body>
       <div class="container">
         <h1>Informações do Cliente</h1>
-        <p><strong>Nome do cliente:</strong> ${userInfo.name}</p>
-        <p><strong>Email:</strong> ${userInfo.email}</p>
-        <p><strong>Instagram:</strong> ${userInfo.instagram}</p>
-        <p><strong>Parte do corpo:</strong> ${userInfo.bodyPart}</p>
-        <p><strong>Tamanho do desenho:</strong> ${userInfo.size}</p>
-        <p><strong>Observações:</strong> ${userInfo.obs}</p>
-        <p><strong>Tipo de tattoo:</strong> ${userInfo.tattooType.join(", ")}</p>
-        <p><strong>Dias disponíveis:</strong> ${userInfo.days.join(", ")}</p>
-        <p><strong>Horários disponíveis:</strong> ${userInfo.hours.join(", ")}</p>
+        <p><strong>Nome do cliente:</strong> ${name}</p>
+        <p><strong>Data de nascimento:</strong> ${birth}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Instagram:</strong> ${insta}</p>
+        <p><strong>CPF:</strong> ${cpf}</p>
+        <p><strong>Valor da tatuagem:</strong> ${amount}</p>
+        <p><strong>Data da tatuagem:</strong> ${tattooDate}</p>
+        <p><strong>Doenças prévias:</strong> ${deseases.length ? deseases.join(", ") : "Não"}</p>
+        <p><strong>Tatuador:</strong> ${tattooer}</p>
+        <p><strong>Remédios:</strong> ${piils ? "Sim" : "Não"}</p>
+        <p><strong>Concordou com os termos:</strong> ${imageRights && covid ? "Sim" : "Não"}</p>
+        <p><strong>Informações adicionais:</strong> ${info}</p>
         <hr/>
-        <h3>Referências do cliente</h3>
-        ${userInfo.imgUrl.map((url) => `<img src="${url}" alt="Tattoo Image" style="max-width: 300px; max-height: 300px;" />`)}
       </div>
     </body>
     </html>

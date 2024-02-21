@@ -5,7 +5,7 @@ import EmailService from "./src/EmailService.js"
 
 dotenv.config()
 const app = express()
-const port = 3000
+const port = 3001
 
 app.use(cors({
   origin: '*',
@@ -21,14 +21,9 @@ app.listen(port, () => {
   })
   app.post('/require_budget', (req, res) => {
     try {
-      const { email } = req.body
-      if (!email || !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-        throw new Error('Email is invalid')
-      }
       const emailService = new EmailService()
       emailService.sendEmailToBabi("babicarvalho.ink@gmail.com", req.body)
-      
-      res.send("Orçamento enviado com sucesso")
+      res.send("Anamnsese enviado com sucesso!")
     } catch (error) {
       res.send(error)
     }
