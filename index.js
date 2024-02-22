@@ -9,7 +9,7 @@ const port = 3001
 
 app.use(cors({
   origin: '*',
-  methods: ['POST'],
+  methods: ['POST', 'GET'],
 }));
 app.use(express.json());
 
