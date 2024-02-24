@@ -5,7 +5,7 @@ import EmailService from "./src/EmailService.js"
 
 dotenv.config()
 const app = express()
-const port = 3001
+const port = 3000
 
 app.use(cors({
   origin: '*',
@@ -14,18 +14,15 @@ app.use(cors({
 app.use(express.json());
 
 app.listen(port, () => {
-  console.log(`Project running...`)
+  console.log(`Project running on port ${port}`)
 
   app.get('/', (req, res) => {
+    console.log('GET request')
     res.send('Hello World!')
   })
   app.post('/require_budget', (req, res) => {
-    try {
-      const emailService = new EmailService()
-      emailService.sendEmailToBabi("babicarvalho.ink@gmail.com", req.body)
-      res.send("Anamnsese enviado com sucesso!")
-    } catch (error) {
-      res.send(error)
-    }
+    const emailService = new EmailService()
+    emailService.sendEmailToBabi("babicarvalho.ink@gmail.com", req.body)
+    res.send("Anamnsese enviado com sucesso!")
   })
 })

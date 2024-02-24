@@ -34,7 +34,7 @@ export default class EmailService {
   }
 
   mountEmailBody(userInfo) {
-    const { name, email, insta, tattooDate, cpf, amount, tattooer, deseases, piils, info, imageRights, covid } = userInfo
+    const { name, birth, email, insta, tattooDate, cpf, amount, tattooer, deseases, piils, info, imageRights, covid } = userInfo
     return `
     <html>
     <head>
