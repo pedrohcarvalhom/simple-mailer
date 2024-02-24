@@ -24,12 +24,9 @@ export default class EmailService {
     }
 
     console.log('enviando email para: ', userInfo.email)
-    this.transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        return console.log(error)
-      }
-
-      console.log('Message sent: %s', info.messageId)
+    return this.transporter.sendMail(mailOptions, (error, info) => {
+      if (error) return error;
+      return info;
     })
   }
 

@@ -22,7 +22,12 @@ app.listen(port, () => {
   })
   app.post('/require_budget', (req, res) => {
     const emailService = new EmailService()
-    emailService.sendEmailToBabi("babicarvalho.ink@gmail.com", req.body)
-    res.send("Anamnsese enviado com sucesso!")
+
+    try {
+      const response = emailService.sendEmailToBabi("babicarvalho.ink@gmail.com", req.body);
+      res.send(`Formulário enviado com sucesso! Id da mensagem ${response.messageId}`);
+    } catch (error) {
+      res.send("Erro ao enviar email.")
+    }
   })
 })
