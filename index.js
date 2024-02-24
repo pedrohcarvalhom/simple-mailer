@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 import express from 'express'
 import cors from 'cors'
 import EmailService from "./src/EmailService.js"
+import { AnamneseEmailService } from './src/AnamneseEmailService.js'
 
 dotenv.config()
 const app = express()
@@ -28,6 +29,19 @@ app.listen(port, () => {
       res.send(`Formulário enviado com sucesso! Id da mensagem ${response.messageId}`);
     } catch (error) {
       res.send("Erro ao enviar email.")
+    }
+  })
+
+  app.post('/require_anamnese', (req, res) => {
+    const emailService = new AnamneseEmailService();
+    const tattoerEmail = req.body.tattooer;
+
+    try {
+      emailService.sendMailToTattooer(tattoerEmail, req.body);
+      res.status(200).send(`Formulário enviado com sucesso!`);
+    } catch (error) {
+      console.log(error)
+      res.status(422).send("Erro ao enviar email.")
     }
   })
 })
