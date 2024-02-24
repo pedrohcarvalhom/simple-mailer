@@ -60,12 +60,12 @@ export class AnamneseEmailService extends BaseEmail {
       <div class="container">
         <h1>Informações do Cliente</h1>
         <p><strong>Nome do cliente:</strong> ${name}</p>
-        <p><strong>Data de nascimento:</strong> ${new Date(birth).toLocaleDateString()}</p>
+        <p><strong>Data de nascimento:</strong> ${birth}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Instagram:</strong> ${insta}</p>
         <p><strong>CPF:</strong> ${cpf}</p>
         <p><strong>Valor da tatuagem:</strong> ${amount}</p>
-        <p><strong>Data da tatuagem:</strong> ${new Date(tattooDate).toLocaleDateString()}</p>
+        <p><strong>Data da tatuagem:</strong> ${tattooDate}</p>
         <p><strong>Doenças prévias:</strong> ${deseases.length ? deseases.join(", ") : "Não"}</p>
         <p><strong>Tatuador:</strong> ${tattooer}</p>
         <p><strong>Remédios:</strong> ${piils ? "Sim" : "Não"}</p>
