@@ -25,10 +25,10 @@ app.listen(port, () => {
     const emailService = new EmailService()
 
     try {
-      const response = emailService.sendEmailToBabi("babicarvalho.ink@gmail.com", req.body);
-      res.send(`Formulário enviado com sucesso! Id da mensagem ${response.messageId}`);
+      emailService.sendEmailToBabi("babicarvalho.ink@gmail.com", req.body);
+      res.status(200).send(`Formulário de orçamento enviado com sucesso!`);
     } catch (error) {
-      res.send("Erro ao enviar email.")
+      res.status(422).send("Erro ao enviar email.")
     }
   })
 
@@ -38,7 +38,7 @@ app.listen(port, () => {
 
     try {
       emailService.sendMailToTattooer(tattoerEmail, req.body);
-      res.status(200).send(`Formulário enviado com sucesso!`);
+      res.status(200).send(`Formulário de anamnese enviado com sucesso!`);
     } catch (error) {
       console.log(error)
       res.status(422).send("Erro ao enviar email.")
